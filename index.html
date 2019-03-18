@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>WebRTC Task</title>
+    
+        <link rel="stylesheet" type="text/css" href="css/googleAPIs.css"/>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script type="text/javascript" src="js/sticker.min.js"></script>
+
+    </head>
+<body>
+
+    <p style="text-align: center">Laboratorinis no. 4</p>
+    <video id="video" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <button id="filtering">Filter Photo</button>
+    <canvas id="canvas"></canvas>
+    <canvas id="canvasFiltered"></canvas>
+
+<script>
+
+    // Prefer camera resolution nearest to 1280x720.
+    var constraints = { audio: true, video: { width: 640, height: 480 } }; 
+
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(function(mediaStream) {
+    var video = document.querySelector('video');
+    video.srcObject = mediaStream;
+    video.onloadedmetadata = function(e) {
+        video.play();
+    };
+    })
+    .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
+
+
+    // Elements for taking the snapshot
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+    var video = document.getElementById('video');
+
+    // Trigger photo take
+    document.getElementById("snap").addEventListener("click", function() {
+        context.drawImage(video, 0, 0, 640, 480);
+    });
+
+</script>
+
+</body>
+</html>
