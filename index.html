@@ -13,11 +13,21 @@
 <body>
 
     <p style="text-align: center">Laboratorinis no. 4</p>
+
     <video id="video" autoplay></video>
-    <button id="snap">Snap Photo</button>
-    <button id="filtering">Filter Photo</button>
-    <canvas id="canvas"></canvas>
-    <canvas id="canvasFiltered"></canvas>
+    <br></br>
+
+    <button id="snap" style="margin-left: 350px">Snap Photo</button>           <!--Take a photo-->
+    <button id="filtering" style="margin-left: 600px">Filter Photo</button>    <!--Photo first filter-->
+    <br></br>
+    <canvas id="canvas" style="margin-left: 100px"></canvas>                   <!--PHOTO-->
+    <canvas id="canvasFiltered" style="margin-left: 100px"></canvas>           <!--First filter-->
+    <br></br>
+    <button id="filtering2" style="margin-left: 350px">Filter Photo2</button>  <!--Photo second filter-->
+    <button id="filtering3" style="margin-left: 600px">Filter Photo3</button>  <!--Photo third filter-->
+    <br></br>
+    <canvas id="filter2" style="margin-left: 100px"></canvas>                  <!--Second filter-->
+    <canvas id="filter3" style="margin-left: 100px"></canvas>                  <!--Third filter-->
 
 <script>
 
@@ -38,10 +48,10 @@
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
     var video = document.getElementById('video');
-
+    var picture = 0;
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-        context.drawImage(video, 0, 0, 640, 480);
+        picture = context.drawImage(video, 0, 0, 640, 480);
     });
 
 </script>
