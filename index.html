@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-
         <title>WebRTC Task</title>
     
         <link rel="stylesheet" type="text/css" href="css/googleAPIs.css"/>
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <script type="text/javascript" src="js/sticker.min.js"></script>
 
     </head>
 <body>
@@ -24,10 +21,10 @@
     <canvas id="canvasFiltered" style="margin-left: 100px"></canvas>           <!--photo 1-->
     <br></br>
     <button id="filtering2" style="margin-left: 350px">Filter 2</button>       <!--button filter 2-->
-    <button id="filtering3" style="margin-left: 600px">Filter 3</button>       <!--button filter 3-->
+    <button id="filtering3" style="margin-left: 625px">Filter 3</button>       <!--button filter 3-->
     <br></br>
-    <canvas id="filter2" style="margin-left: 100px"></canvas>                  <!--photo 2-->
-    <canvas id="filter3" style="margin-left: 100px"></canvas>                  <!--photo 3-->
+    <canvas id="canvasFiltered2" style="margin-left: 100px"></canvas>                  <!--photo 2-->
+    <canvas id="canvasFiltered3" style="margin-left: 100px"></canvas>                  <!--photo 3-->
 
 <script>
 
@@ -43,17 +40,52 @@
     };
     })
     .catch(function(err) { console.log(err.name + ": " + err.message); }); // always check for errors at the end.
-    
+
     // Elements for taking the snapshot
     var canvas = document.getElementById('canvas');
+    var canvasF1 = document.getElementById('canvasFiltered');
+    var canvasF2 = document.getElementById('canvasFiltered2');
+    var canvasF3 = document.getElementById('canvasFiltered3');
     var context = canvas.getContext('2d');
+    var context1 = canvasF1.getContext('2d');
+    var context2 = canvasF2.getContext('2d');
+    var context3 = canvasF3.getContext('2d');
     var video = document.getElementById('video');
-    var picture = 0;
+
+    
+    
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-        picture = context.drawImage(video, 0, 0, 640, 480);
+        context.drawImage(video, 0, 0, 320, 240);
     });
 
+    document.getElementById("filtering").addEventListener("click", function(){
+        
+        context1.drawImage(canvas, 30, 0, 240, 155);
+
+        canvasF1.style.filter = "grayscale(100%)";
+        canvasF1.style.filter = "invert(100%)";
+        
+    });
+
+    document.getElementById("filtering2").addEventListener("click", function(){
+        
+        context2.drawImage(canvas, 30, 0, 240, 155);
+
+        canvasF2.style.filter = "saturate(10)";
+    });
+
+    document.getElementById("filtering3").addEventListener("click", function(){
+        
+        context3.drawImage(canvas, 30, 0, 240, 155);
+
+        canvasF3.style.filter = "hue-rotate(270deg)";
+        canvasF3.style.filter = "brightness(300%)";
+    });
+
+
+
+    
 </script>
 
 </body>
