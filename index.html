@@ -26,12 +26,6 @@
     <canvas id="canvasFiltered2" style="margin-left: 100px"></canvas>                  <!--photo 2-->
     <canvas id="canvasFiltered3" style="margin-left: 100px"></canvas>                  <!--photo 3-->
     <br></br>
-    <button id="filtering4" style="margin-left: 350px">Filter 4</button>       <!--button filter 4-->
-    <button id="filtering5" style="margin-left: 625px">Filter 5</button>       <!--button filter 5-->
-    <br></br>
-    <canvas id="canvasFiltered4" style="margin-left: 100px"></canvas>                  <!--photo 4-->
-    <canvas id="canvasFiltered5" style="margin-left: 100px"></canvas>                  <!--photo 5-->
-    
     
     <br></br>
     <p style="text-align:center">Conlcusion: </p>
@@ -62,14 +56,10 @@
     var canvasF1 = document.getElementById('canvasFiltered');
     var canvasF2 = document.getElementById('canvasFiltered2');
     var canvasF3 = document.getElementById('canvasFiltered3');
-    var canvasF4 = document.getElementById('canvasFiltered4');
-    var canvasF5 = document.getElementById('canvasFiltered5');
     var context = canvas.getContext('2d');
     var context1 = canvasF1.getContext('2d');
     var context2 = canvasF2.getContext('2d');
     var context3 = canvasF3.getContext('2d');
-    var context4 = canvasF4.getContext('2d');
-    var context5 = canvasF5.getContext('2d');
     var video = document.getElementById('video');
 
     
@@ -101,17 +91,6 @@
 
         canvasF3.style.filter = "hue-rotate(270deg)";
         canvasF3.style.filter = "brightness(300%)";
-    });
-
-    document.getElementById("filtering4").addEventListener("click", function(){
-
-    });
-
-    document.getElementById("filtering5").addEventListener("click", function(){
-        
-        context5.drawImage(canvas, 30, 0, 240, 155);
-
-
     });
 
 
