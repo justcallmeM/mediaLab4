@@ -63,7 +63,6 @@
     var video = document.getElementById('video');
 
     
-    
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
         context.drawImage(video, 0, 0, 320, 240);
@@ -75,14 +74,42 @@
 
         canvasF1.style.filter = "grayscale(100%)";
         canvasF1.style.filter = "invert(100%)";
+
+        var imgData = context1.getImageData(0, 0, 320, 240);
+
+        var i;
+        for (i = 0; i < imgData.data.length; i += 4) {
+
+            if(imgData.data[i+0] > 240 && imgData.data[i+1] > 200 && imgData.data[i+2] > 140){
+                imgData.data[i+0] = 0;
+                imgData.data[i+1] = 0;
+                imgData.data[i+2] = 0;
+            } else{
+                imgData.data[i+0] = imgData.data[i+0];
+                imgData.data[i+1] = imgData.data[i+1];
+                imgData.data[i+2] = imgData.data[i+2];
+            }
+        }
+
+        context1.putImageData(imgData, 0, 0);
         
     });
 
     document.getElementById("filtering2").addEventListener("click", function(){
         
         context2.drawImage(canvas, 30, 0, 240, 155);
+        
+        var imgData = context1.getImageData(0, 0, 320, 240);
 
-        canvasF2.style.filter = "saturate(10)";
+        var i;
+        for (i = 0; i < imgData.data.length; i += 4) {
+            imgData.data[i+0] = 100;
+            imgData.data[i+1] = 0;
+            imgData.data[i+2] = 200;
+            imgData.data[i+3] = 255;
+        }
+
+        context1.putImageData(imgData, 0, 0);
     });
 
     document.getElementById("filtering3").addEventListener("click", function(){
